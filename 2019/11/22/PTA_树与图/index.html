@@ -45,7 +45,7 @@
         
             PTA_树与图 | 
         
-        Hexo
+        Ssj&#39;s Blog
     </title>
 
     <!-- Favicons -->
@@ -162,12 +162,7 @@
 
     <style>
       body{
-        background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
+        background-image: url(/img/bj.png);
       }
     </style>
 
@@ -214,11 +209,11 @@
 
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Hexo">
+    <meta name="application-name" content="Ssj&#39;s Blog">
     <meta name="msapplication-starturl" content="http://yoursite.com/2019/11/22/PTA_%E6%A0%91%E4%B8%8E%E5%9B%BE/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Hexo">
+    <meta name="apple-mobile-web-app-title" content="Ssj&#39;s Blog">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="apple-touch-icon" href="/img/favicon.png">
 
@@ -232,7 +227,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com/2019/11/22/PTA_%E6%A0%91%E4%B8%8E%E5%9B%BE/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="PTA_树与图 | Hexo">
+    <meta property="og:title" content="PTA_树与图 | Ssj&#39;s Blog">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content="">
     
@@ -274,7 +269,7 @@
     },
     "publisher": {
         "@type": "Organization",
-        "name": "Hexo",
+        "name": "Ssj&#39;s Blog",
         "logo": {
             "@type":"ImageObject",
             "url": "/img/favicon.png"
@@ -501,6 +496,16 @@
 <p><strong>代码：</strong><br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;queue&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int pre[31],in[31];</span><br><span class="line">int n;//节点个数</span><br><span class="line">typedef struct BiTNode&#123;</span><br><span class="line">	int data;</span><br><span class="line">	struct BiTNode *lchild;</span><br><span class="line">	struct BiTNode *rchild;</span><br><span class="line">&#125;BiTNode,*BiTree;</span><br><span class="line">BiTree Build(int *in,int *pre,int n)&#123;//第一个参数是中序序列的起始位置,第二个参数是后序序列的起始位置,n是长度 </span><br><span class="line">if(n&lt;=0)return NULL;</span><br><span class="line">int *p=in;</span><br><span class="line">while(p)</span><br><span class="line">&#123;</span><br><span class="line">	if(*p==*pre)break;</span><br><span class="line">	p++;</span><br><span class="line">&#125;</span><br><span class="line">BiTree T=new BiTNode;</span><br><span class="line">int len=p-in;</span><br><span class="line">T-&gt;data=*p;</span><br><span class="line">BiTNode* l=Build(in,pre+1,len);</span><br><span class="line">BiTNode* r=Build(p+1,pre+len+1,n-1-len);</span><br><span class="line">if(l==NULL&amp;&amp;r==NULL)</span><br><span class="line">&#123;</span><br><span class="line"> T-&gt;lchild=l;</span><br><span class="line">T-&gt;rchild=r;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    T-&gt;rchild=l;</span><br><span class="line">T-&gt;lchild=r;</span><br><span class="line">&#125;</span><br><span class="line">return T;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void LevelOrder(BiTree root)&#123;</span><br><span class="line">if (root == NULL) &#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	std::queue&lt;BiTNode *&gt;	q;</span><br><span class="line">	// 启动</span><br><span class="line">	q.push(root);</span><br><span class="line"></span><br><span class="line">	while (!q.empty()) &#123;</span><br><span class="line">		BiTNode *front = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line"></span><br><span class="line">		if (front-&gt;lchild != NULL) &#123;</span><br><span class="line">			q.push(front-&gt;lchild);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		if (front-&gt;rchild != NULL) &#123;</span><br><span class="line">			q.push(front-&gt;rchild);</span><br><span class="line">		&#125;</span><br><span class="line">		if(!q.empty())</span><br><span class="line">		cout&lt;&lt;front-&gt;data&lt;&lt;&quot; &quot;;</span><br><span class="line">else cout&lt;&lt;front-&gt;data;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">BiTree T;//只需要定义,不需要赋值-&gt;[BiTree T = new BiTNode;] </span><br><span class="line">cin&gt;&gt;n;</span><br><span class="line">for(int i=0;i&lt;n;i++)</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;in[i];</span><br><span class="line">&#125;</span><br><span class="line">for(int i=0;i&lt;n;i++)</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;pre[i];</span><br><span class="line">&#125;</span><br><span class="line">T=Build(in,pre,n);</span><br><span class="line">	LevelOrder(T);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
         
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            This blog is under a <a href="/creativecommons.html" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="http://yoursite.com/2019/11/22/PTA_%E6%A0%91%E4%B8%8E%E5%9B%BE/">http://yoursite.com/2019/11/22/PTA_%E6%A0%91%E4%B8%8E%E5%9B%BE/</a>
+                    </p>
+                </blockquote>
+        
     
 
     
@@ -617,7 +622,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">4</span></a>
+                <a class="sidebar_archives-link" href="/archives/2019/11/">十一月 2019<span class="sidebar_archives-count">3</span></a>
             </ul>
         </li>
         
@@ -638,8 +643,26 @@
         </li>
         
     
+        <li>
+            <a href="/gallery" title="图库">
+                
+                    <i class="material-icons sidebar-material-icons">cloud_circle</i>
+                
+                图库
+            </a>
+        </li>
+        
+    
 
     <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">3</span>
+            </a>
+        </li>
+        
     
 </ul>
 
@@ -656,8 +679,6 @@ It will not impact the appearance and can give developers a lot of support :)
 -->
 
 <!-- Sidebar Divider -->
-
-    <div class="sidebar-divider"></div>
 
 
 <!-- Theme Material -->
@@ -773,7 +794,12 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Hexo
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>Ssj's Blog
+            
+                <br>
+                
+                    <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow noopener">某ICP备xxxxxxxx号-x</a>
+                
             
         </div>
 
